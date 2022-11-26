@@ -76,7 +76,7 @@ inner join
 	select 
 		shippingid
 		,max(state_datetime) as max_state_datetime
-		,max(case when state = 'booked' then state_datetime end) as shipping_start_fact_datetime
+		,min(case when state = 'booked' then state_datetime end) as shipping_start_fact_datetime
 		,max(case when state = 'recieved' then state_datetime end) as shipping_end_fact_datetime
 	from shipping
 	group by shippingid
